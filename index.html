@@ -4,137 +4,235 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Morve App - Request Demo</title>
+
     <style>
-        /* UI Design - Matching your screenshot */
         body {
-            margin: 0; padding: 0;
+            margin: 0;
+            padding: 0;
             font-family: -apple-system, system-ui, sans-serif;
             background-color: #ffffff;
-            display: flex; justify-content: center; min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
         }
 
         .container {
-            width: 100%; max-width: 500px;
-            padding: 40px 20px; text-align: center;
+            width: 100%;
+            max-width: 500px;
+            padding: 40px 20px;
+            text-align: center;
         }
 
+        /* Logo */
         .logo-container {
-            width: 120px; height: 120px;
-            margin: 0 auto 20px; border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
             background-color: #f0f0f0;
-            display: flex; align-items: center; justify-content: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .logo-container img { width: 80%; }
 
-        h1 { font-size: 24px; font-weight: 700; margin-bottom: 10px; }
-        .description { font-size: 15px; color: #333; margin-bottom: 40px; line-height: 1.5; }
+        .logo-container img {
+            width: 85%;
+            height: auto;
+        }
 
-        /* Edited Button Design */
+        h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            font-size: 15px;
+            color: #333;
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+
+        /* Buttons */
         .link-card {
-            display: flex; align-items: center; justify-content: center;
-            position: relative; background-color: #fff;
-            border: 2px solid #000; border-radius: 30px;
-            padding: 18px 20px; margin-bottom: 20px;
-            text-decoration: none; color: #000;
-            font-size: 16px; font-weight: 600; width: 100%;
-            box-sizing: border-box; cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background-color: #fff;
+            border: 2px solid #000;
+            border-radius: 30px;
+            padding: 18px 20px;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #000;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+            box-sizing: border-box;
+            cursor: pointer;
             box-shadow: 0 4px 0px #000;
-            transition: all 0.1s ease;
+            transition: all 0.2s ease;
         }
-        .link-card:active { transform: translateY(2px); box-shadow: 0 2px 0px #000; }
-        .dots-icon { position: absolute; right: 20px; color: #999; }
 
-        /* Form Modal Styling */
+        /* Hover animation */
+        .link-card:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 0px #000;
+        }
+
+        .link-card:active {
+            transform: translateY(1px);
+            box-shadow: 0 3px 0px #000;
+        }
+
+        /* Dots icon (ONLY for request demo) */
+        .dots-icon {
+            position: absolute;
+            right: 20px;
+            color: #999;
+        }
+
+        /* Modal */
         .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.7); display: none;
-            justify-content: center; align-items: center; z-index: 1000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
         }
+
         .modal-content {
-            background: white; padding: 30px; border-radius: 24px;
-            width: 90%; max-width: 380px; border: 2px solid #000;
+            background: white;
+            padding: 30px;
+            border-radius: 24px;
+            width: 90%;
+            max-width: 380px;
+            border: 2px solid #000;
+            animation: popIn 0.3s ease;
         }
-        
-        form { display: flex; flex-direction: column; gap: 12px; }
-        
-        /* Edited Input Fields */
+
+        @keyframes popIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
         input {
-            padding: 14px; border: 2px solid #eee;
-            border-radius: 12px; font-size: 15px; outline: none;
-            transition: border-color 0.3s;
+            padding: 14px;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            font-size: 15px;
+            outline: none;
         }
-        input:focus { border-color: #000; }
+
+        input:focus {
+            border-color: #000;
+        }
 
         .submit-btn {
-            background: #000; color: #fff; border: none;
-            padding: 15px; border-radius: 30px;
-            font-weight: bold; cursor: pointer; font-size: 16px;
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 15px;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 16px;
             margin-top: 10px;
+            transition: transform 0.2s ease;
         }
+
+        .submit-btn:hover {
+            transform: scale(1.03);
+        }
+
         .close-text {
-            text-align: center; color: #888; font-size: 13px;
-            margin-top: 15px; cursor: pointer; text-decoration: underline;
+            text-align: center;
+            color: #888;
+            font-size: 13px;
+            margin-top: 15px;
+            cursor: pointer;
+            text-decoration: underline;
         }
     </style>
 </head>
+
 <body>
 
-    <div class="container">
-        <div class="logo-container"><img src="logo.png" alt="Morve Logo"></div>
-        <h1>Morve App</h1>
-        <p class="description">Smart Stocks. Swift E-Bills. 🚀 📦 Real-time Inventory Tracking 🧾 Instant GST E-way Bills 📈 Advanced Business Analytics</p>
-
-        <div class="link-card" id="openModal">
-            Request Demo of MORVE APP!
-            <span class="dots-icon">⋮</span>
-        </div>
-
-        <a href="https://instagram.com/morveapp" class="link-card">
-            Join us on Instagram
-            <span class="dots-icon">⋮</span>
-        </a>
-        
-        <a href="https://facebook.com/morveapp" class="link-card">
-            Follow our Facebook Page
-            <span class="dots-icon">⋮</span>
-        </a>
-
-        <a href="https://linkedin.com/morveapp" class="link-card">
-                    Let's connect on LinkedIn!
-            <span class="dots-icon">⋮</span>
-        </a>
-    
+<div class="container">
+    <!-- Updated Logo -->
+    <div class="logo-container">
+        <img src="logo.png" alt="Morve Logo">
     </div>
 
-    <div class="modal-overlay" id="modal">
-        <div class="modal-content">
-            <h2 style="margin-top:0; font-size: 22px;">Get a Free Demo</h2>
-            <p style="font-size: 14px; color: #545454; margin-bottom: 20px;">Enter your details and we will send the demo link to your email.</p>
-            
-            <form action="https://api.web3forms.com/submit" method="POST">
-                <input type="hidden" name="access_key" value="f1e74d6a-33ff-4d6f-b908-e38bcf2ba64f">
-                
-                <input type="hidden" name="subject" value="New Demo Lead: Morve App">
-                
-                <input type="checkbox" name="botcheck" style="display:none">
+    <h1>Morve App</h1>
 
-                <input type="text" name="name" placeholder="Full Name" required>
-                <input type="text" name="company" placeholder="Business Name"required>
-                <input type="email" name="email" placeholder="Work Email" required>
-                <input type="tel" name="phone" placeholder="WhatsApp Number" required>
-                
-                <button type="submit" class="submit-btn">Send Details to Email</button>
-                <div class="close-text" id="closeModal">Maybe later</div>
-            </form>
-        </div>
+    <p class="description">
+        Smart Stocks. Swift E-Bills. 🚀 📦 Real-time Inventory Tracking
+        🧾 Instant GST E-way Bills 📈 Advanced Business Analytics
+    </p>
+
+    <!-- Request Demo (dots kept) -->
+    <div class="link-card" id="openModal">
+        Request Demo of MORVE APP!
+        <span class="dots-icon">⋮</span>
     </div>
 
-    <script>
-        const modal = document.getElementById('modal');
-        document.getElementById('openModal').onclick = () => modal.style.display = 'flex';
-        document.getElementById('closeModal').onclick = () => modal.style.display = 'none';
-        window.onclick = (e) => { if (e.target == modal) modal.style.display = 'none'; }
-    </script>
+    <!-- Social buttons (dots removed) -->
+    <a href="https://instagram.com/morveapp" class="link-card">
+        Join us on Instagram
+    </a>
+
+    <a href="https://facebook.com/morveapp" class="link-card">
+        Follow our Facebook Page
+    </a>
+
+    <a href="https://linkedin.com/morveapp" class="link-card">
+        Let's connect on LinkedIn!
+    </a>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modal">
+    <div class="modal-content">
+        <h2 style="margin-top:0;">Get a Free Demo</h2>
+        <p style="font-size:14px;color:#545454;">
+            Enter your details and we will send the demo link to your email.
+        </p>
+
+        <form action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="f1e74d6a-33ff-4d6f-b908-e38bcf2ba64f">
+            <input type="hidden" name="subject" value="New Demo Lead: Morve App">
+            <input type="checkbox" name="botcheck" style="display:none">
+
+            <input type="text" name="name" placeholder="Full Name" required>
+            <input type="text" name="company" placeholder="Business Name" required>
+            <input type="email" name="email" placeholder="Work Email" required>
+            <input type="tel" name="phone" placeholder="WhatsApp Number" required>
+
+            <button type="submit" class="submit-btn">Send Details to Email</button>
+            <div class="close-text" id="closeModal">Maybe later</div>
+        </form>
+    </div>
+</div>
+
+<script>
+    const modal = document.getElementById('modal');
+    document.getElementById('openModal').onclick = () => modal.style.display = 'flex';
+    document.getElementById('closeModal').onclick = () => modal.style.display = 'none';
+    window.onclick = (e) => { if (e.target === modal) modal.style.display = 'none'; };
+</script>
 
 </body>
 </html>
