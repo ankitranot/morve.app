@@ -64,25 +64,25 @@
             padding: 18px 20px;
             margin-bottom: 20px;
             text-decoration: none;
-            color: #000;
+            color: #545454;
             font-size: 16px;
             font-weight: 600;
             width: 100%;
             box-sizing: border-box;
             cursor: pointer;
-            box-shadow: 0 4px 0px #000;
+            box-shadow: 0 4px 0px #545454;
             transition: all 0.2s ease;
         }
 
         /* Hover animation */
         .link-card:hover {
             transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 8px 0px #000;
+            box-shadow: 0 8px 0px #004AAD;
         }
 
         .link-card:active {
             transform: translateY(1px);
-            box-shadow: 0 3px 0px #000;
+            box-shadow: 0 3px 0px #545454;
         }
 
         /* Dots icon (ONLY for request demo) */
@@ -112,7 +112,7 @@
             border-radius: 24px;
             width: 90%;
             max-width: 380px;
-            border: 2px solid #000;
+            border: 2px solid #004AAD;
             animation: popIn 0.3s ease;
         }
 
@@ -140,7 +140,7 @@
         }
 
         .submit-btn {
-            background: #000;
+            background: #004AAD;
             color: #fff;
             border: none;
             padding: 15px;
@@ -209,7 +209,7 @@
     <div class="modal-content">
         <h2 style="margin-top:0;">Get a Free Demo</h2>
         <p style="font-size:14px;color:#545454;">
-            Enter your details and we will send the demo link to your email.
+            Enter your details and we will reach out to you!
         </p>
 
         <form action="https://api.web3forms.com/submit" method="POST">
@@ -222,7 +222,7 @@
             <input type="email" name="email" placeholder="Work Email" required>
             <input type="tel" name="phone" placeholder="WhatsApp Number" required>
 
-            <button type="submit" class="submit-btn">Send Details to Email</button>
+            <button type="submit" class="submit-btn">Send Details</button>
             <div class="close-text" id="closeModal">Maybe later</div>
         </form>
     </div>
