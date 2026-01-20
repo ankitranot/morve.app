@@ -17,6 +17,7 @@
             display: flex;
             justify-content: center;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         .container {
@@ -24,22 +25,24 @@
             max-width: 500px;
             padding: 40px 20px;
             text-align: center;
+            position: relative;
+            z-index: 2;
         }
 
         /* Logo */
         .logo-container {
-    width: 120px;
-    height: 120px;
-    margin: 0 auto 20px;
-    border-radius: 50%;
-    background-color: #f2f2f2;   /* ✅ light grey circle */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background-color: #f2f2f2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         .logo-container img {
             width: 70%;
-            height: auto;
         }
 
         h1 {
@@ -48,11 +51,11 @@
             margin-bottom: 10px;
         }
 
-        .description {
+        p {
             font-size: 15px;
             color: #333;
-            margin-bottom: 40px;
             line-height: 1.5;
+            margin-bottom: 40px;
         }
 
         /* Buttons */
@@ -70,14 +73,10 @@
             color: #000;
             font-size: 16px;
             font-weight: 600;
-            width: 100%;
-            box-sizing: border-box;
             cursor: pointer;
-            box-shadow: 0 4px 0px #black;
             transition: all 0.2s ease;
         }
 
-        /* Hover animation */
         .link-card:hover {
             transform: translateY(-3px) scale(1.02);
             box-shadow: 0 8px 0px #004AAD;
@@ -88,11 +87,24 @@
             box-shadow: 0 3px 0px #545454;
         }
 
-        /* Dots icon (ONLY for request demo) */
         .dots-icon {
             position: absolute;
             right: 20px;
             color: #999;
+        }
+
+        /* Social row */
+        .social-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-row .link-card {
+            flex: 1;
+            padding: 14px 10px;
+            font-size: 14px;
+            border-radius: 20px;
+            margin-bottom: 0;
         }
 
         /* Modal */
@@ -135,11 +147,11 @@
             border: 2px solid #eee;
             border-radius: 12px;
             font-size: 15px;
-            outline: none;
         }
 
         input:focus {
             border-color: #000;
+            outline: none;
         }
 
         .submit-btn {
@@ -149,14 +161,8 @@
             padding: 15px;
             border-radius: 30px;
             font-weight: bold;
-            cursor: pointer;
             font-size: 16px;
-            margin-top: 10px;
-            transition: transform 0.2s ease;
-        }
-
-        .submit-btn:hover {
-            transform: scale(1.03);
+            cursor: pointer;
         }
 
         .close-text {
@@ -167,13 +173,49 @@
             cursor: pointer;
             text-decoration: underline;
         }
+
+        /* Floating dots */
+        .dot-layer {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .dot {
+            position: absolute;
+            bottom: -10px;
+            width: 6px;
+            height: 6px;
+            background: rgba(0, 74, 173, 0.35);
+            border-radius: 50%;
+            animation: rise linear infinite;
+        }
+
+        @keyframes rise {
+            from { transform: translateY(0); opacity: 0; }
+            10% { opacity: 1; }
+            to { transform: translateY(-120vh); opacity: 0; }
+        }
     </style>
 </head>
 
 <body>
 
+<!-- Background animation -->
+<div class="dot-layer">
+    <div class="dot" style="left:5%;  animation-duration:28s;"></div>
+    <div class="dot" style="left:15%; animation-duration:22s;"></div>
+    <div class="dot" style="left:25%; animation-duration:30s;"></div>
+    <div class="dot" style="left:40%; animation-duration:26s;"></div>
+    <div class="dot" style="left:55%; animation-duration:32s;"></div>
+    <div class="dot" style="left:70%; animation-duration:24s;"></div>
+    <div class="dot" style="left:85%; animation-duration:29s;"></div>
+</div>
+
 <div class="container">
-    <!-- Updated Logo -->
+
     <div class="logo-container">
         <img src="logo.png" alt="Morve Logo">
     </div>
@@ -181,44 +223,35 @@
     <h1>Morve App</h1>
 
     <p>
-        <b>Smart Stocks, Swift E-Bills 🚀 </b>
-       <br>
-        
-          Track your stock/product and create GST bills in seconds! <br> <br>
+        <b>Smart Stocks, Swift E-Bills 🚀</b><br><br>
+        Track your stock/products and create GST bills in seconds!
     </p>
 
-    <!-- Request Demo (dots kept) -->
+    <!-- Request demo -->
     <div class="link-card" id="openModal">
         Request Demo of MORVE APP!
         <span class="dots-icon">⋮</span>
     </div>
 
-    <!-- Social buttons (dots removed) -->
-    <a href="https://instagram.com/morveapp" class="link-card">
-        Join us on Instagram
-    </a>
+    <!-- Social buttons -->
+    <div class="social-row">
+        <a href="https://instagram.com/morveapp" class="link-card">Instagram</a>
+        <a href="https://facebook.com/morveapp" class="link-card">Facebook</a>
+        <a href="https://www.linkedin.com/company/morveapp" class="link-card">LinkedIn</a>
+    </div>
 
-    <a href="https://facebook.com/morveapp" class="link-card">
-        Follow our Facebook Page
-    </a>
-
-    <a href="https://www.linkedin.com/company/morveapp" class="link-card">
-        Let's connect on LinkedIn!
-    </a>
 </div>
 
 <!-- Modal -->
 <div class="modal-overlay" id="modal">
     <div class="modal-content">
-        <h2 style="margin-top:0;">Get a Free Demo</h2>
+        <h2>Get a Free Demo</h2>
         <p style="font-size:14px;color:#545454;">
-            Enter your details and we will reach out to you!
+            Enter your details and we’ll reach out!
         </p>
 
         <form action="https://api.web3forms.com/submit" method="POST">
             <input type="hidden" name="access_key" value="f1e74d6a-33ff-4d6f-b908-e38bcf2ba64f">
-            <input type="hidden" name="subject" value="New Demo Lead: Morve App">
-            <input type="checkbox" name="botcheck" style="display:none">
 
             <input type="text" name="name" placeholder="Full Name" required>
             <input type="text" name="company" placeholder="Business Name" required>
@@ -235,74 +268,8 @@
     const modal = document.getElementById('modal');
     document.getElementById('openModal').onclick = () => modal.style.display = 'flex';
     document.getElementById('closeModal').onclick = () => modal.style.display = 'none';
-    window.onclick = (e) => { if (e.target === modal) modal.style.display = 'none'; };
+    window.onclick = e => { if (e.target === modal) modal.style.display = 'none'; };
 </script>
-
-
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Floating Dots Background</title>
-
-<style>
-  body {
-    margin: 0;
-    height: 100vh;
-    background: #ffffff; /* fixed background */
-    overflow: hidden;
-  }
-
-  .dot-layer {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-  }
-
-  .dot {
-    position: absolute;
-    bottom: -10px;
-    width: 6px;
-    height: 6px;
-    background: rgba(0, 74, 173, 0.25); /* #004AAD */
-    border-radius: 50%;
-    animation: rise linear infinite;
-  }
-
-  @keyframes rise {
-    from {
-      transform: translateY(0);
-      opacity: 0;
-    }
-    10% {
-      opacity: 1;
-    }
-    to {
-      transform: translateY(-120vh);
-      opacity: 0;
-    }
-  }
-</style>
-</head>
-<body>
-
-<div class="dot-layer">
-  <div class="dot" style="left:5%;  animation-duration:28s;"></div>
-  <div class="dot" style="left:15%; animation-duration:22s;"></div>
-  <div class="dot" style="left:25%; animation-duration:30s;"></div>
-  <div class="dot" style="left:40%; animation-duration:26s;"></div>
-  <div class="dot" style="left:55%; animation-duration:32s;"></div>
-  <div class="dot" style="left:70%; animation-duration:24s;"></div>
-  <div class="dot" style="left:85%; animation-duration:29s;"></div>
-  <div class="dot" style="left:95%; animation-duration:35s;"></div>
-</div>
-
-</body>
-</html>
-
-
-    
 
 </body>
 </html>
