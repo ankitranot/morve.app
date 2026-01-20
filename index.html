@@ -16,7 +16,7 @@
             background-color: #ffffff;
             display: flex;
             justify-content: center;
-            align-items: center;   /* vertical centering */
+            align-items: center;   /* desktop center */
             min-height: 100vh;
             overflow-x: hidden;
         }
@@ -24,7 +24,7 @@
         .container {
             width: 100%;
             max-width: 500px;
-            padding: 3px 20px 98px; /* ✅ bottom is ~20% more */
+            padding: 3px 20px 98px;
             text-align: center;
             position: relative;
             z-index: 2;
@@ -194,6 +194,21 @@
             from { transform: translateY(0); opacity: 0; }
             10% { opacity: 1; }
             to { transform: translateY(-120vh); opacity: 0; }
+        }
+
+        /* ✅ MOBILE ONLY FIX */
+        @media (max-width: 600px) {
+            body {
+                align-items: flex-start;
+            }
+
+            .container {
+                padding-top: 16px;
+            }
+
+            .logo-container {
+                margin-top: 8px;
+            }
         }
     </style>
 </head>
